@@ -1,9 +1,10 @@
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<ctype.h>
 #define N 1024
-int flag = 0;                        
+int flag = 0;                         //敬亚霖 201931061165
 int r[2] = {0};
 
 void *ReadChar(char* fileName);
@@ -85,4 +86,31 @@ void *ReadChar(char* fileName)//字符数
         }
     }
     printf("%d",index);
+}
+void *ReadWord(char* fileName)//单词数 
+{
+    char buf[N];
+	int d = 0;    
+    int sum = 0;
+	int n,i;
+    FILE* fp = NULL;
+    fp = fopen(fileName,"r");
+    while(!feof(fp))
+    {
+        fscanf(fp,"%s",buf);
+        n = strlen(buf);
+        for(i=1;i<n;i++)
+        {
+            if(buf[i] == ','||buf[i] == ' '||buf[i] == '.') {
+                d++;
+            }
+        }
+        if(n > 0)
+        {
+            sum += d +1;
+            d = 0;
+        }
+
+    }
+    printf("%d",sum);
 }
